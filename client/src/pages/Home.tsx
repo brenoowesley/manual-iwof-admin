@@ -112,23 +112,7 @@ const modules: Module[] = [
       { title: "Antes de confirmar um valor", body: "Compare esta tela com os agendamentos que foram realmente realizados no mesmo período." },
     ],
   },
-  {
-    id: "loja",
-    eyebrow: "Contexto",
-    title: "Troca de loja",
-    short: "Escolha em qual loja você está trabalhando.",
-    description: "Se você tiver acesso a mais de uma loja, escolha aqui qual delas quer consultar antes de criar ou alterar qualquer informação.",
-    tone: "rose",
-    icon: Store,
-    route: "menu lateral",
-    duration: "2 min",
-    steps: ["Clique no nome da loja no menu à esquerda.", "Escolha a loja desejada na lista.", "Confira se o nome mudou antes de continuar."],
-    tip: "Sempre confira o nome da loja. Uma troca de loja muda as informações que aparecem nas outras telas.",
-    details: [
-      { title: "Por que isso importa", body: "Cada loja pode ter vagas, pessoas e valores diferentes. Por isso, a plataforma sempre mostra o nome da loja escolhida." },
-      { title: "Um hábito importante", body: "Olhe o nome da loja antes de adicionar uma vaga, consultar valores ou convidar alguém para acessar a plataforma." },
-    ],
-  },
+
   {
     id: "admin",
     eyebrow: "Governança",
@@ -206,7 +190,7 @@ function RealScreen({ module }: { module: Module }) {
     <div className="real-screen-wrap">
       <div className="real-screen-bar"><span className="real-dot red" /><span className="real-dot yellow" /><span className="real-dot green" /><span className="real-address">cliente.iwof.com.br{path}</span><a href={`https://cliente.iwof.com.br${path}`} target="_blank" rel="noreferrer" aria-label="Abrir tela real em nova aba"><ExternalLink size={13} /></a></div>
       <div className="real-screen platform-capture">
-        <aside className="capture-sidebar"><strong>iWof</strong><span className={isDashboard ? "capture-active" : ""}>⌂ Dashboard</span><span className={isJobs ? "capture-active" : ""}>▣ Vagas</span><span className={isBookings ? "capture-active" : ""}>▤ Agendamentos</span><span className={isFinance ? "capture-active" : ""}>▧ Financeiro</span><i /><span>▱ iWof Loja 1　›</span><span className={isAdmin ? "capture-active" : ""}>⚙ Admin</span><span className={isProfile ? "capture-active" : ""}>♙ Perfil</span></aside>
+        <aside className="capture-sidebar"><strong>iWof</strong><span className={isDashboard ? "capture-active" : ""}>⌂ Dashboard</span><span className={isJobs ? "capture-active" : ""}>▣ Vagas</span><span className={isBookings ? "capture-active" : ""}>▤ Agendamentos</span><span className={isFinance ? "capture-active" : ""}>▧ Financeiro</span><i /><span className={isAdmin ? "capture-active" : ""}>⚙ Admin</span><span className={isProfile ? "capture-active" : ""}>♙ Perfil</span></aside>
         <div className="capture-main"><div className="capture-top"><span>Hoje, 17 de setembro de 2026</span><b>BR</b></div><div className="capture-body"><div className="capture-title"><div><h4>{title}</h4><p>{isJobs ? "Gerencie todas as vagas da loja iWof Loja 1." : isBookings ? "Consulte e gerencie os agendamentos da loja iWof Loja 1." : isFinance ? "Detalhamento da cobrança da loja iWof Loja 1 referente ao período selecionado." : isAdmin ? "Gerencie os usuários da sua empresa." : isProfile ? "Gerencie suas informações pessoais e configurações da conta." : "Acompanhe as vagas e a presença da sua equipe."}</p></div>{isJobs && <b className="capture-add">＋ Adicionar vaga</b>}{isDashboard && <button className="flex items-center gap-1 bg-red-50 border border-red-200 text-red-600 font-bold px-2 py-1.5 rounded text-[8px] pointer-events-none" style={{ marginTop: '-4px' }}>Requer Ação<span className="bg-red-600 text-white rounded-full px-1.5 py-0.5 text-[6px] ml-1">2</span></button>}</div>
           {isAdmin ? <div className="capture-admin-tabs"><b>Funções</b><b className="tab-selected">Usuários</b><div className="capture-search">⌕　Buscar por nome ou e-mail</div></div> : isProfile ? <div className="capture-profile"><div><small>INFORMAÇÕES PESSOAIS</small><strong>Nome completo<br /><em>Breno</em></strong><strong>E-mail<br /><em>breno@iwof.com.br</em></strong></div><div><small>SEGURANÇA</small><strong>Senha　••••••••••</strong><b className="capture-outline">Alterar senha</b></div></div> : <><div className="capture-filters"><span>{isJobs ? "⌕ Buscar por id" : "Início　 01/09/2026"}</span><span>{isJobs ? "Todas as funções" : isFinance ? "Fim　 17/09/2026" : "Fim　 26/09/2026"}</span><span>{isJobs ? "Horário da escala" : isBookings ? "Todas　 Função" : "Todas as funções"}</span></div><div className="capture-cards"><b><small>{isFinance ? "Valor Total do Período" : isBookings ? "Total de Agendamentos" : isDashboard ? "Vagas do dia" : "Vagas disponíveis"}</small><strong>{isFinance ? "R$ 0,00" : isBookings ? "0" : isDashboard ? "67" : "2.486"}</strong></b><b><small>{isFinance ? "Horas Trabalhadas" : isBookings ? "Em andamento" : isDashboard ? "Presentes" : "Vagas ocupadas"}</small><strong className={isDashboard ? "text-green-600" : ""}>{isFinance ? "0 h" : isBookings ? "0" : isDashboard ? "29" : "0"}</strong></b><b><small>{isFinance ? "Funções Faturadas" : isBookings ? "Realizados" : isDashboard ? "Pendentes" : "Total de vagas"}</small><strong className={isDashboard ? "text-orange-500" : ""}>{isFinance ? "0" : isBookings ? "0" : isDashboard ? "38" : "0"}</strong></b></div>
           {isDashboard ? (
@@ -364,7 +348,7 @@ export default function Home() {
         <footer className="footer"><AppLogo /><span>feito para a rotina ficar mais leve.</span><span className="footer-right">iWof · manual de operação</span></footer>
       </main>
 
-      {assistantOpen && <div className="assistant-overlay" onClick={() => setAssistantOpen(false)}><div className="assistant-panel" onClick={(event) => event.stopPropagation()}><div className="assistant-head"><div><span className="assistant-spark"><Sparkles size={16} /></span><div><span className="section-kicker">ATENDIMENTO RÁPIDO</span><h3>Como posso ajudar?</h3></div></div><button className="icon-button" onClick={() => setAssistantOpen(false)} aria-label="Fechar ajuda"><X size={18} /></button></div><p className="assistant-intro">Escolha uma dúvida comum ou escreva o que você precisa entender.</p><div className="assistant-prompts"><button onClick={() => { setAssistantOpen(false); selectModule("vagas"); }}>Como criar uma vaga? <ArrowRight size={15} /></button><button onClick={() => { setAssistantOpen(false); selectModule("financeiro"); }}>Como conferir o financeiro? <ArrowRight size={15} /></button><button onClick={() => { setAssistantOpen(false); selectModule("loja"); }}>Como trocar de loja? <ArrowRight size={15} /></button></div><div className="assistant-input"><Search size={16} /><input placeholder="Digite sua pergunta..." /><span>⌘ K</span></div></div></div>}
+      {assistantOpen && <div className="assistant-overlay" onClick={() => setAssistantOpen(false)}><div className="assistant-panel" onClick={(event) => event.stopPropagation()}><div className="assistant-head"><div><span className="assistant-spark"><Sparkles size={16} /></span><div><span className="section-kicker">ATENDIMENTO RÁPIDO</span><h3>Como posso ajudar?</h3></div></div><button className="icon-button" onClick={() => setAssistantOpen(false)} aria-label="Fechar ajuda"><X size={18} /></button></div><p className="assistant-intro">Escolha uma dúvida comum ou escreva o que você precisa entender.</p><div className="assistant-prompts"><button onClick={() => { setAssistantOpen(false); selectModule("vagas"); }}>Como criar uma vaga? <ArrowRight size={15} /></button><button onClick={() => { setAssistantOpen(false); selectModule("financeiro"); }}>Como conferir o financeiro? <ArrowRight size={15} /></button></div><div className="assistant-input"><Search size={16} /><input placeholder="Digite sua pergunta..." /><span>⌘ K</span></div></div></div>}
     </div>
   );
 }
