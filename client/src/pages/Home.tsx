@@ -304,10 +304,7 @@ export default function Home() {
       </aside>
 
       <main className="main-area">
-        <div className="topbar">
-          <div className="breadcrumbs"><span>iWof</span><span>/</span><strong>Manual interativo</strong></div>
-          <div className="topbar-actions"><span className="last-updated">Atualizado para a experiência atual</span><button className="help-button" onClick={() => setAssistantOpen(true)}><CircleHelp size={17} /> Preciso de ajuda</button><div className="top-avatar">BR</div></div>
-        </div>
+
 
         <section className="hero-section">
           <div className="hero-copy">
